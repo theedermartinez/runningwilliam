@@ -4,8 +4,9 @@ from player import Player
 
 
 
+
 #enviroment methods
-def environment1(screen,player1,gravity,timer):
+def environment1(screen,player1,gravity,timer,asteroids, number_asteroids):
     ##change path to be in the right place
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     #os.chdir() #change working directory
@@ -19,6 +20,12 @@ def environment1(screen,player1,gravity,timer):
 
     ##add text to home screen
     write_text(screen, "Running William",10,10)
+
+    #asteroid make and put in the array with random attributes
+    zero = 0
+    while zero < number_asteroids:
+        
+        zero +=1
 
     #set gravity
     gravity +=1
@@ -40,7 +47,6 @@ def write_text(screen, text,xcord,ycord):
     screen.blit(text_surface, (xcord,ycord))
 
 
-def make_platform()
 
 def main():
     pygame.init()
@@ -51,10 +57,11 @@ def main():
     player1 = Player(100, 100, 100, 200, "Images/Player/william_movement1.png")
     gravity = 0
     game_time = 300 #60 seconds per plannet 
-    game_time_seconds = 0;
+    game_time_seconds = 0; #helps counter 
+    asteroids = [] #holds asteroids that will be used 
 
     while True:
-        for event in pygame.event.get()
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
@@ -86,7 +93,7 @@ def main():
         print(game_time)
         if game_time >= 240: 
             gravity +=0.15
-            environment1(screen,player1,gravity, game_time)
+            environment1(screen,player1,gravity, game_time,asteroids,2)
         
         # Update the display
         pygame.display.update()
