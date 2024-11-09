@@ -3,34 +3,38 @@ import os
 from sys import exit
 
 class Player:
-    #global variables 
-    global width
-    global height
-    global player_type
-
-    def __init__(self, player_type, height, width) :
+   
+    def __init__(self, height, width,xcord,ycord):
         # Initialize instance variables
-        self.player_type = player_type
         self.height = height
         self.width = width
+        self.surface = None  # Initialize surface variable
+        self.rectangle = None # to be returned 
+        self.xcord = xcord
+        self.ycord = ycord
 
+        self.make_rectangle(self.xcord,self.ycord)
+        self.make_surface()
+    
 
-    def select(self):
-        # Define the selection logic based on player type
-        if self.player_type == "1":
-            # Set attributes or logic for type "1"
-            print("Setting player to type one.")
-        else:
-            # Set attributes or logic for other types
-            print("Setting player to type two.")
+    def make_surface(self):
+        # Create a Pygame surface using instance width and height
+        self.surface = pygame.Surface((self.width, self.height))  # Set the surface to a new surface
+        self.surface.fill("orange")
+        return self.surface
 
-    def make_surface(width, height):
-        # Creating a Pygame surface using instance width and height
-        return pygame.Surface(width * height);
+    # Define where it will spawn in
+    def make_rectangle(self, xcord, ycord):
+       rectangle = self.surface.get_rect(midbottom = (xcord,ycord))
 
-
-    #define player hit box
-    def make_rectangle(object,xcord,ycord):
-        rect = object.get_rect(midbottom == (xcord,ycord))
-        return rect
-
+    def get_width(self):
+        return self.width
+    
+    def get_height(self):
+        return self.height
+    
+    def get_surface(self):
+       return self.surface
+    
+    def get_rectangle(self):
+        return self.rectangle
