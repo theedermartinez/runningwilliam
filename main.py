@@ -67,9 +67,7 @@ def player_movement(event, player):
                     elif event.key == pygame.K_LEFT:
                         player_left = 0 
                 #Mouse click player jumps
-                if event.type == pygame.MOUSEBUTTONDOWN and player.get_rectangle().bottom >= 300:
-                    if player.get_rectangle().collidepoint(event.pos):
-                        stat_dic["player_gravity"] = -20
+               
     else:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             game_active = True
