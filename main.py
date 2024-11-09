@@ -13,6 +13,7 @@ stat_dic = {} #stat dictionary so we can know his stats
 
 def main():
     pygame.init()
+player(100,50,0,0)
     see = pygame.display.set_mode((800, 400))
     clock = pygame.time.Clock()
     pygame.display.set_caption("Running William")
@@ -30,7 +31,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-                main_char = player(100,50,0,0)
+                main_char = 
                 player_movement(event, main_char)
         
         scene_1(see)
@@ -43,6 +44,7 @@ def main():
             
 
 def player_movement(event, player):
+game_active=True
     if game_active:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE and player.get_rectangle().bottom >= 300:
