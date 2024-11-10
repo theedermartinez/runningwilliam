@@ -1,12 +1,12 @@
 import pygame
 import os
 from player import Player
-
-
+from asteroid import Asteroid
+import random
 
 
 #enviroment methods
-def environment1(screen,player1,gravity,timer,asteroids, number_asteroids):
+def environment1(screen,player1,gravity,timer,asteroids_list, number_asteroids):
     ##change path to be in the right place
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     #os.chdir() #change working directory
@@ -22,10 +22,28 @@ def environment1(screen,player1,gravity,timer,asteroids, number_asteroids):
     write_text(screen, "Running William",10,10)
 
     #asteroid make and put in the array with random attributes
-    zero = 0
-    while zero < number_asteroids:
+    
+    
+    if len(asteroids_list)< 5:
         
-        zero +=1
+        #create asteroid and add it 
+        new_asteroid_object = Asteroid(5, random.randint(800,1000),random.randint(1,400), "Images/Asteroids/asteroid_1_good.png") #create a new asteroid with random location
+        #new_asteroid_object = Asteroid(5,100, 100,"Images/Asteroids/asteroid_1.png")
+        #new_asteroid_object = Asteroid(5,random.randint(1,400), 200, "Images/Asteroids/asteroid_1.png") #create a new asteroid with random location
+
+        asteroids_list.append(new_asteroid_object)
+        
+
+    for x in asteroids_list:
+        screen.blit(x.get_surface(), x.get_rectangle())
+        x.set_x(-5)
+        print("in print asterorid")
+        print(x.get_rectangle().x)
+        if(x.get_rectangle().right < 0):
+            asteroids_list.remove(x)
+
+    ##move asteroid 
+        
 
     #set gravity
     gravity +=1
@@ -58,7 +76,8 @@ def main():
     gravity = 0
     game_time = 300 #60 seconds per plannet 
     game_time_seconds = 0; #helps counter 
-    asteroids = [] #holds asteroids that will be used 
+    asteroids_list = [] #holds asteroids that will be used 
+    life = 100 #start with 100 life
 
     while True:
         for event in pygame.event.get():
@@ -93,7 +112,8 @@ def main():
         print(game_time)
         if game_time >= 240: 
             gravity +=0.15
-            environment1(screen,player1,gravity, game_time,asteroids,2)
+            environment1(screen,player1,gravity, game_time,asteroids_list,2)
+        
         
         # Update the display
         pygame.display.update()
