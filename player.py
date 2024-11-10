@@ -47,6 +47,9 @@ class Player:
 
     def set_y(self, mod_num):
         self.rectangle.y += mod_num
+
+    def set_image(self, newimg):
+         self.surface = pygame.image.load(newimg) 
     
     def apply_gravity(self, gravity):
        

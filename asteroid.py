@@ -38,7 +38,11 @@ class Asteroid:
     def set_x(self,mod_num):
         self.rectangle.x += mod_num
     
-    def special_x(self, mod_num):
-        self.rectangle.x
+    def special_move_1(self, mod_num):
+        self.rectangle.x += mod_num
+        self.rectangle.y = int( 0.001*(self.rectangle.x ** 2))
     
+    def special_move_2(self, mod_num):
+        self.rectangle.x += mod_num
+        self.rectangle.y = int( 0.001*((self.rectangle.x -30 ) ** 2))
     
